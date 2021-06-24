@@ -83,6 +83,7 @@ function popup() {
       case "Yes":
         swal({title: "ACCOUNT CREATED", text: "The random generated password has been saved in your vault successfully!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,})
         password.value = "(WP=(Ld8f<{h=x#r";
+        password2.value = "(WP=(Ld8f<{h=x#r";
         .then(function(){location.reload();});
         break;
 
