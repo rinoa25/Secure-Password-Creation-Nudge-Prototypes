@@ -1,0 +1,102 @@
+/* Imports custom font */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/* Customizes background & sets the font of the entire page */
+body {
+  font-family: montserrat, arial, verdana;
+  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+}
+
+/* Customizes web content */
+.content{
+  text-align: center;
+  width: 100%;
+  padding: 10px 0px;
+  color: #2C3E50;
+}
+
+/* Specifies the boldness of the web's content's font */
+.content div{
+    font-weight: 700;
+}
+
+/* Customizes main titles for every page */
+.title h1{
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+
+/* Gives main titles a line under it */
+.title h1:after{
+  display: block;
+  content:' ';
+  background: #2C3E50;
+  width: 33%;
+  height: 3px;
+  margin: 10px auto;
+  margin-bottom: 50px;
+}
+
+/* Formats prototype title */
+.overlay {
+  position: absolute;
+  bottom: 135px;
+  background: white;
+  width: 30%;
+  color: #2C3E50;
+  text-align: center;
+  left: 35%;
+  border: solid 1.8px #2C3E50;
+  font-size: 10pt;
+  border-radius: 10px;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+/* Create 2 equal columns that floats next to each other */
+.col {
+  float: left;
+  width: 50%;
+  padding: 0 50px;
+}
+
+/* Styles the view buttons */
+.pressBtn{
+  background: #66CDAA;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnbtn{
+  margin-top: -25px;
+}
+
+.pressBtn:hover{
+  opacity: 0.8;
+}
+
+/* Customizes each card and info inside it*/
+.info {
+  text-align: center;
+  color: #2C3E50;
+  padding-bottom: 20px;
+  position: relative;
+  font-size: 15pt;
+  background-color: white;
+  max-height: 405px;
+  border-radius: 15px;
+}
+
+.info p{
+  color: #2C3E50;
+  font-size: 13pt;
+  font-weight: normal;
+}
