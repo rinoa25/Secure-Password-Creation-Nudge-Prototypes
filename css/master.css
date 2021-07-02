@@ -60,7 +60,7 @@ body {
 .col {
   float: left;
   width: 50%;
-  padding: 0 50px;
+  padding: 20px 50px;
 }
 
 /* Styles the view buttons */
