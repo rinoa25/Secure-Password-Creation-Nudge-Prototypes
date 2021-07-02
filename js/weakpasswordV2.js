@@ -13,8 +13,12 @@ function checkInputs() {
   const passValue = password.value.trim();
   const passValue2 = password2.value.trim();
 
-  if(passValue !== "(WP=(Ld8f<{h=x#r" && emailValue.indexOf("@") != -1 && passValue == passValue2 && passValue !== "") {
+  if(isPassword(passValue) != true && emailValue.indexOf("@") != -1 && passValue == passValue2 && passValue !== "") {
     popup();
+  }
+
+  if(isPassword(passValue) == true && emailValue.indexOf("@") != -1 && passValue == passValue2 && passValue !== "") {
+    popup2();
   }
 
   if (emailValue == "") {
@@ -30,7 +34,7 @@ function checkInputs() {
   if (passValue == "") {
     setErrorFor(password, "Password cannot be blank");
   }
-  else if (passValue !== "(WP=(Ld8f<{h=x#r") {
+  else if (isPassword(passValue) != true) {
     setErrorFor(password, "This password will risk the security of the account");
   }
   else {
@@ -47,6 +51,15 @@ function checkInputs() {
     setSuccessFor(password2);
   }
 
+}
+
+function isPassword(password) {
+  if (password.match(/[a-z]/g) && password.match(/[A-Z]/g) && password.match(/[0-9]/g) && password.match(/[^a-zA-Z\d]/g) && password.length >= 8) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 function setErrorFor(input, message) {
@@ -66,7 +79,7 @@ function setSuccessFor(input) {
 function popup() {
   swal ({
   title: "WEAK PASSWORD IDENTIFIED",
-  text: "Password needs to contain at least 8 upper-case and lower-case characters with numbers and symbols. Would like us to generate a random password for you instead?",
+  text: "Password needs to contain at least 8 letters (1 uppercase and 1 lowercase), 1 digit, and 1 special character. Would you like to use a random generated password instead?",
   icon: "warning",
   closeOnClickOutside: false,
   closeOnEsc: false,
@@ -86,6 +99,37 @@ function popup() {
 
       case "No":
         break;
+
+    }
+
+  });
+
+}
+
+function popup2() {
+  swal ({
+  title: "GUARANTEE YOUR ACCOUNT'S SECURITY",
+  text: "Would you like to use a random generated password to give your account more protection from hackers?",
+  icon: "info",
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+  buttons: {
+    cancel: "No",
+    Yes: true,
+  }
+})
+
+  .then((value) => {
+
+    switch (value) {
+
+      case "Yes":
+        swal({title: "ACCOUNT CREATED", text: "The random generated password has been saved in your vault successfully!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+        break;
+
+      default:
+      swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+      break;
 
     }
 
