@@ -65,7 +65,7 @@ show.onclick = function() {
 // Lock animation + password validation
 const actions = {
 
-validatePassword: (ctx) => {setTimeout(() => {if (elPassword.value === "(WP=(Ld8f<{h=x#r") {send("VALID");}else{send("INVALID");}});},
+validatePassword: (ctx) => {setTimeout(() => {if (elPassword.value === "EDxt&DPVu8^&") {send("VALID");}else{send("INVALID");}});},
 
 };
 
@@ -115,8 +115,8 @@ elRndm.addEventListener("mousedown", () => send("SUBMIT"));
 document.getElementById("randombutton").addEventListener('mousedown', function () {
   var rand = document.getElementById('passid');
   var rand2 = document.getElementById('cpassid');
-  rand.value = "(WP=(Ld8f<{h=x#r";
-  rand2.value = "(WP=(Ld8f<{h=x#r";
+  rand.value = "EDxt&DPVu8^&";
+  rand2.value = "EDxt&DPVu8^&";
 });
 
 // Display bottom error message
@@ -136,7 +136,7 @@ function checkInputs() {
   const passValue = passwordfield.value.trim();
   const passValue2 = cpasswordfield.value.trim();
 
-  if (emailValue.indexOf("@") != -1 && passValue == "(WP=(Ld8f<{h=x#r"
+  if (emailValue.indexOf("@") != -1 && passValue == "EDxt&DPVu8^&"
   && passValue == passValue2) {
       swal({title: "ACCOUNT CREATED", text: "The random generated password has been saved in your vault successfully!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
   }
@@ -154,7 +154,7 @@ function checkInputs() {
   if (passValue == "") {
     setErrorFor(passwordfield, "Password cannot be blank");
   }
-  else if (passValue !== "(WP=(Ld8f<{h=x#r") {
+  else if (passValue !== "EDxt&DPVu8^&") {
     setErrorsFor(passwordfield, "Similar password already exists in your vault");
   }
   else {
