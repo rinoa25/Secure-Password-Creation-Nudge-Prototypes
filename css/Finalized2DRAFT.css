@@ -1,0 +1,285 @@
+/* Imports custom font */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/* Sets the font of the entire page, customizes background & ensures form is responsive */
+html, body {
+  font-family: montserrat, arial, verdana;
+  background: #ADD8E6;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+/* Ensures form is responsive */
+body {
+  display: flex;
+}
+
+/* Customizes the form */
+#register {
+  /* Customizes the size of the form */
+  width: 650px;
+  /* Customizes the position of the form to be centered */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* Ensures title and button are centered */
+	text-align: center;
+}
+
+/* Customizes the form further */
+#register fieldset {
+  background: #FFFFFF;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	width: 85%;
+}
+
+/* Customizes "Create Your Account" header on top of the page */
+.header {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2C3E50;
+	margin: 25px auto;
+  font-weight: bolder;
+}
+
+/* Ensures labels are positioned / formatted correctly*/
+.container {
+  width: 100%;
+}
+
+/* Customizes position & font size of labels*/
+label{
+  float: left;
+  margin-bottom: 5px;
+  font-size: small;
+}
+
+/* Customizes the input boxes */
+#register input[type=text], input[type=password] {
+  color: #2C3E50;
+  font: small-caption;
+  font-size: 16px;
+  border: 1px solid #CCCCCC;
+	border-radius: 3px;
+  outline: none;
+  width: 100%;
+  padding: 15px;
+	margin-bottom: 35px;
+}
+
+/* Customizes eye icon position */
+.show, .hide{
+  position: absolute;
+  right: 20px;
+  top: 42px;
+  color: #333333;
+}
+
+/* On hover changes cursor to pointer */
+.show, .hide:hover{
+  cursor: pointer;
+}
+
+/* Ensures all animation transformations for the states of the lock is smooth */
+/* Eg. Going from blue (idle) to red (idle.error) is smooth, not glitchy */
+*, *:before, *:after {
+  transition: all 0.5s cubic-bezier(0.5, 0, 0.5, 1);
+  transition-property: transform, opacity, background-color, border-color;
+  transition-delay: 0s;
+}
+
+/* Ensures eye icon and lock are positioned correctly */
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Lock positioning and appearance */
+.lock-container{
+  display: none;
+  position: relative;
+  left: 44.5%;
+  right: -44.5%;
+}
+
+/* Error red lock */
+.open-lock{
+  display: none;
+  fill: #FF0011;
+  width: 50px;
+  height: 50px;
+  animation: icon-error 1s cubic-bezier(0.5, 0, 0.5, 1) both;
+  animation-fill-mode: forwards;
+}
+
+/* Transformation Properties of  red lock (lock is instructed to shake) */
+@keyframes icon-error {
+  from, 85%, to {transform: none;}
+  20%, 50% {transform-origin: right center; transform: translateX(-15%) scaleX(1.1);}
+  35%, 65% {transform-origin: left center; transform: translateX(15%) scaleX(1.1);}
+}
+
+.open-lock:hover{
+  fill: #C91400;
+}
+
+/* Successful green lock */
+.closed-lock{
+  display: none;
+  width: 50px;
+  height: 50px;
+}
+
+/* Customizes position of bottom error message */
+.bottomerror {
+  position: absolute;
+  visibility: hidden;
+  font-size: 14px;
+  text-align: left;
+  margin-top: -30px;
+}
+
+/* Customizes appearance of input fields when bottom error message appears */
+#register .container.error input {
+  border-color: rgba(220, 53, 69, 1);
+  color: rgba(220, 53, 69, 1);
+}
+
+/* Customizes appearance of input fields when bottom error message disappers */
+#register .container.success input {
+  border-color: #00C234;
+}
+
+/* Customizes appearance of text displayed in bottom error message */
+#register .container.error small {
+  color: rgba(220, 53, 69, 1);
+  visibility: visible;
+}
+
+/* Customizes appearance of password generator when bottom error message appears */
+#register .container.error input[type=button] {
+  border: none;
+  color: #FFFFFF;
+}
+
+.description{
+  position: fixed;
+  padding-right: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.nudge-info input[type="button"]{
+  top: 80%;
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #00C234;
+  color: #FFFFFF;
+  font-size: 18px;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nudge-info input[type="button"]:hover{
+  cursor: pointer;
+  background: #00A300;
+  color: #FFFFFF;
+}
+
+.exit{
+  position: absolute;
+  bottom: 0;
+  margin-left: 90px;
+  top:88%;
+  text-decoration: none;
+}
+
+.exit:hover{
+  cursor: pointer;
+  color: #FF0011;
+}
+
+/*Desktop UI*/
+@media screen and (min-width: 900px){
+  /* Nudge message box */
+  .nudge-info{
+    display: none;
+      width: 320px;
+      height: 400px;
+      background: #F5F6FF;
+      color: #000000;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+      outline-style: solid;
+      outline-color: #00C234;
+      padding: 50px 30px;
+      margin-left: 500px;
+    }
+}
+
+/*Mobile UI*/
+@media screen and (max-width: 900px){
+  /* Nudge message box */
+  .nudge-info{
+    display: none;
+      width: 320px;
+      height: 400px;
+      background: #F5F6FF;
+      color: #000000;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+      outline-style: solid;
+      outline-color: #00C234;
+      padding: 50px 30px;
+    }
+}
+
+/* Customizes specs of the register button */
+#register .registerbtn {
+	background: #7F7FD5;
+	font-weight: inherit;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	padding: 10px;
+  width: 40%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* When mouse hovers over button, the button will lighten */
+#register .registerbtn:hover {
+  opacity: 0.5;
+}
+
+/* Title of pop up message after submission */
+.swal-title {
+  font-size: 25px;
+}
+
+/* Text content of pop up message after submission */
+.swal-text {
+  display: block;
+  text-align: center;
+  color: #61534E;
+  font-size: 18px;
+  margin: 10px;
+}
