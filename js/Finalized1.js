@@ -7,8 +7,7 @@ const elConfirm = document.querySelector(".cpassfield");
 var openLock = document.querySelector(".open-lock");
 var closedLock = document.querySelector(".closed-lock");
 var lockContainer = document.querySelector(".lock-container");
-// true = red & false = green
-var lockState = true;
+var lockState = true; // True = red open lock  // False = green closed lock
 
 // Defines the toggle password visibility variables
 var show = document.querySelector(".show");
@@ -27,7 +26,7 @@ const cpasswordfield = document.getElementById('cpassid');
 const elButton = document.querySelector(".registerbtn");
 const elRndm = document.querySelector(".rndmbtn");
 
-// Toggles password visibility (hides password)
+// Toggles password visibility (hides password for both password fields)
 hide.onclick = function() {
   elPassword.setAttribute("type", "password");
   elConfirm.setAttribute("type", "password");
@@ -35,7 +34,7 @@ hide.onclick = function() {
   show.style.display = "block";
 }
 
-// Toggles password visibility (shows password)
+// Toggles password visibility (shows password for both password fields)
 show.onclick = function() {
   elPassword.setAttribute("type", "text");
   elConfirm.setAttribute("type", "text");
@@ -43,64 +42,62 @@ show.onclick = function() {
   hide.style.display = "block";
 }
 
-// Message prompt, bottom error message, & lock appears (along with red border and red dots) when user clicks on the password field
+// Actions that occur when user clicks on the password field
 elPassword.addEventListener('focus', (e) => {
+  // Lock appears
   lockContainer.style.display = 'inherit';
+  // Bottom error message (includes red border and red dots)
+  checkInputs();
+  // Defines that true = red open lock
   if (lockState == true) {
+    // Specifically red open lock appears
     openLock.style.display = 'inherit';
-    elPassword.style.color = "#FF0011";
-    elConfirm.style.color = "#FF0011";
-    setErrorFor(passwordfield, "We recommend using a random password");
-    setErrorFor(cpasswordfield, "");
+    // Message appears
     message.style.display = 'block';
-  }
-  // If lock is green, message prompt will not appear
-  if (lockState == false) {
-    message.style.display = 'none';
   }
 });
 
-// When user types in password field, bottom error message appears (border colour)
+// Actions that occur when user types / modifies input in password field
 elPassword.addEventListener('input', (e) => {
-  setErrorFor(passwordfield, "We recommend using a random password");
-  setErrorFor(cpasswordfield, "");
   // If user deletes green input, it will turn to red
   if (lockState == false) {
     // Recognizing that this is now error mode (from green to red cuz user deleted green input)
     lockState = true;
-    closedLock.style.display = 'none';
-    openLock.style.display = 'inherit';
-    elPassword.style.color = "#FF0011";
-    elConfirm.style.color = "#FF0011";
+    // Message prompt will be displayed right as the user deletes green input and it turns red
     message.style.display = 'block';
     // Message prompt will stay when password field clicked + lock is red
     elPassword.addEventListener('focus', (e) => {
       if (lockState == true) {
         message.style.display = 'block';
       }
+      else {
+        message.style.display = 'none';
+      }
     });
   }
-  // if (lockState == true) {
-  //   // Message prompt disappears when user types in password field
-  //   setTimeout(function() {message.style.display = 'none';}, 1000);
-  // }
+  else {
+    // Message prompt disappears when user types in / modifies password field + lock is red
+    setTimeout(function() {message.style.display = 'none';}, 1000);
+  }
+  // Validates input in password field in "real-time"
+  checkInputs();
+});
+
+// Validates input in confirm password field in "real-time"
+elConfirm.addEventListener('input', (e) => {
+  checkCPass();
 });
 
 // Clicking the generate button populates password field & makes everything green
 document.getElementById("randombutton").addEventListener('mousedown', function () {
-  setSuccessFor(passwordfield);
-  setSuccessFor(cpasswordfield);
-  elPassword.style.color = '#00C234';
-  elConfirm.style.color = '#00C234';
-  openLock.style.display = 'none';
-  closedLock.style.display = 'inherit';
+  // By clicking generate button, lock is recognized in successful mode
+  lockState = false;
   var rand = document.getElementById('passid');
   var rand2 = document.getElementById('cpassid');
   rand.value = "(WP=(Ld8f<{h=x#r";
   rand2.value = "(WP=(Ld8f<{h=x#r";
   message.style.display = 'none';
-  // By clicking generate button, lock is recognized in successful mode
-  lockState = false;
+  checkInputs();
 });
 
 // When submit button is clicked, it will check for validation & remove message prompt from display
@@ -117,12 +114,13 @@ function checkValidation() {
   const passValue2 = cpasswordfield.value.trim();
 
   // Scenario that user uses random password
-  if (emailValue.indexOf("@") != -1 && passValue == "(WP=(Ld8f<{h=x#r" && passValue == passValue2) {
+  if (isEmail(emailValue) && passValue == "(WP=(Ld8f<{h=x#r" && passValue == passValue2) {
     swal({title: "ACCOUNT CREATED", text: "Password successfully saved in your vault!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
   }
 
   // Scenario that user doesn't use random password
-  if (emailValue.indexOf("@") != -1 && passValue != "(WP=(Ld8f<{h=x#r" && passValue == passValue2) {
+  if (isEmail(emailValue) && passValue != "" && passValue != "(WP=(Ld8f<{h=x#r" &&
+  passValue == passValue2) {
     swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
   }
 
@@ -130,33 +128,57 @@ function checkValidation() {
   if (emailValue == "") {
     setErrorFor(emailfield, "Email cannot be blank");
   }
-  else if (emailValue.indexOf("@") == -1) {
-    setErrorFor(emailfield, "Invalid email");
-  }
+  else if (!isEmail(emailValue)) {
+		setErrorFor(emailfield, "Invalid email");
+	}
   else {
     setSuccessFor(emailfield);
   }
 
-  // Checks the input of password field
+  checkInputs();
+
+}
+
+// Checks inputs of only the two password fields
+function checkInputs() {
+  checkPass();
+  checkCPass();
+}
+
+// checks input of password field
+function checkPass() {
+  const passValue = passwordfield.value.trim();
   if (passValue == "") {
     setErrorFor(passwordfield, "Password cannot be blank");
+    elPassword.style.color = '#FF0011';
   }
-  else if (passValue == "(WP=(Ld8f<{h=x#r") {
+  else if (passValue != "(WP=(Ld8f<{h=x#r") {
+    lockState = true;
+    setErrorFor(passwordfield, "We recommend using a random password");
+    elPassword.style.color = '#FF0011';
+    openLock.style.display = 'block';
+    closedLock.style.display = 'none';
+  }
+  else {
     lockState = false;
-    setSuccessFor(passwordfield);
+    setSuccessFor(passwordfield, "");
+    setSuccessFor(cpasswordfield, "");
     elPassword.style.color = '#00C234';
-    setSuccessFor(cpasswordfield, "")
     elConfirm.style.color = "#00C234";
     openLock.style.display = 'none';
     closedLock.style.display = 'block';
-    elPassword.addEventListener('focus', (e) => {
-      message.style.display = none;
-    });
+    // If lock is green, message prompt will not appear
+    message.style.display = 'none';
   }
+}
 
   // Checks the input of confirm password field
+function checkCPass() {
+  const passValue = passwordfield.value.trim();
+  const passValue2 = cpasswordfield.value.trim();
   if (passValue2 == "") {
     setErrorFor(cpasswordfield, "Please retype your password");
+    elConfirm.style.color = "#FF0011";
   }
   else if (passValue !== passValue2) {
     setErrorFor(cpasswordfield, "Passwords do not match");
@@ -169,9 +191,14 @@ function checkValidation() {
     }
     if (lockState == true) {
       setErrorFor(cpasswordfield, "");
+      elConfirm.style.color = "#FF0011";
     }
   }
+}
 
+// Validates the format of the given email
+function isEmail(emailfield) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailfield);
 }
 
 // Sets the border colour to be red when error occurs
