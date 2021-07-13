@@ -148,7 +148,6 @@ label{
 /* Customizes appearance of input fields when bottom error message appears */
 #register .container.error input {
   border-color: rgba(220, 53, 69, 1);
-  color: rgba(220, 53, 69, 1);
 }
 
 /* Customizes appearance of input fields when bottom error message disappers */
