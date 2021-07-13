@@ -17,8 +17,6 @@ Navigating the files and folders of this repository:
   - index.html is the homepage's html file
   - Each prototype has the same name for all its associated files
     - Eg. PasswordReuseV3.html, passwordreuseV3.css, passwordreuseV3.js
-
-# The latest prototype is PROTOTYPE 1 VERSION 3
   
 
 
