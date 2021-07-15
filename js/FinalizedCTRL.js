@@ -59,9 +59,6 @@ showy.onclick = function() {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   checkValidation();
-  elUser.value = elEmail.value;
-  elPass.value = elPassword.value;
-  chrome.style.display = "inherit";
 });
 
 // Checks inputs of all textfields (Validation)
@@ -69,6 +66,12 @@ function checkValidation() {
   const emailValue = emailfield.value.trim();
   const passValue = passwordfield.value.trim();
   const passValue2 = cpasswordfield.value.trim();
+
+  if (isEmail(emailValue) && passValue != "" && passValue == passValue2) {
+    elUser.value = elEmail.value;
+    elPass.value = elPassword.value;
+    chrome.style.display = "inherit";
+  }
 
   // Checks the input of email field
   if (emailValue == "") {
