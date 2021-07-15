@@ -1,0 +1,288 @@
+/* Imports custom font */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/* Sets the font of the entire page, customizes background & ensures form is responsive */
+html, body {
+  font-family: montserrat, arial, verdana;
+  background: #ADD8E6;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+/* Ensures form is responsive */
+body {
+  display: flex;
+}
+
+/* Customizes the form */
+#register {
+  /* Customizes the size of the form */
+  width: 650px;
+  /* Customizes the position of the form to be centered */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* Ensures title and button are centered */
+	text-align: center;
+}
+
+/* Customizes the form further */
+#register fieldset {
+  background: #FFFFFF;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	width: 85%;
+}
+
+/* Customizes "Create Your Account" header on top of the page */
+.header {
+  font-size: 18px;
+  text-transform: uppercase;
+	color: #2C3E50;
+	margin: 25px auto;
+  font-weight: bolder;
+}
+
+/* Ensures labels are positioned / formatted correctly*/
+.container {
+  width: 100%;
+}
+
+/* Customizes position & font size of labels*/
+label{
+  float: left;
+  margin-bottom: 5px;
+  font-size: small;
+}
+
+/* Customizes the input boxes */
+#register input[type=text], input[type=password] {
+  color: #2C3E50;
+  font: small-caption;
+  font-size: 16px;
+  border: 1px solid #CCCCCC;
+	border-radius: 3px;
+  outline: none;
+  width: 100%;
+  padding: 15px;
+	margin-bottom: 35px;
+}
+
+/* Customizes eye icon position */
+.show, .hide{
+  position: absolute;
+  right: 20px;
+  top: 42px;
+  color: #333333;
+}
+
+/* On hover changes cursor to pointer */
+.show, .hide:hover{
+  cursor: pointer;
+}
+
+/* Ensures eye icon is positioned correctly */
+*, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Customizes position of bottom error message */
+.bottomerror {
+  position: absolute;
+  visibility: hidden;
+  font-size: 14px;
+  text-align: left;
+  margin-top: -30px;
+}
+
+/* Customizes appearance of input fields when bottom error message appears */
+#register .container.error input {
+  border-color: rgba(220, 53, 69, 1);
+}
+
+/* Customizes appearance of input fields when bottom error message disappers */
+#register .container.success input {
+  border-color: #00C234;
+}
+
+/* Customizes appearance of text displayed in bottom error message */
+#register .container.error small {
+  color: rgba(220, 53, 69, 1);
+  visibility: visible;
+}
+
+/* Customizes appearance of password generator when bottom error message appears */
+#register .container.error input[type=button] {
+  border: none;
+  color: #FFFFFF;
+}
+
+/* Chrome message box */
+.chrome-save{
+  display: none;
+    width: 320px;
+    height: 360px;
+    background: #ffffff;
+    color: #000000;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-90%, -85%);
+    box-sizing: border-box;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 30px 20px 20px 30px;
+    border-radius: 5px;
+    margin-left: 500px;
+  }
+
+.picture {
+padding-left: 5px;
+}
+
+.save-field {
+  border-color: transparent;
+}
+
+.save-field label {
+  font-size: 16px;
+  color: #242424;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 150px;
+  margin-left: -290px;
+}
+
+.save-field h4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 195px;
+  margin-left: -290px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #242424;
+}
+
+.save-field p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 245px;
+  margin-left: -290px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #242424;
+}
+
+/* Chrome pop-up buttons */
+.save-field #user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 190px;
+  margin-left: -220px;
+  width: 210px;
+  height: 30px;
+}
+
+/* Chrome pop-up buttons */
+.save-field #pass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 240px;
+  margin-left: -220px;
+  height: 30px;
+  min-width: 180px;
+}
+
+/* Customizes eye icon position */
+.showy, .hidey{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 248px;
+  margin-right: 5px;
+  color: grey;
+}
+
+/* On hover changes cursor to pointer */
+.showy, .hidey:hover{
+  cursor: pointer;
+}
+
+/* Chrome pop-up buttons */
+.save-field input[type="button"]{
+  height: 35px;
+  font-size: 12px;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* save button */
+.save {
+  border: none;
+  outline: none;
+  background: #4c8bf5;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 85px;
+  margin-bottom: -10px;
+}
+
+/* never button */
+.never {
+  background: #fff;
+  color: #4c8bf5;
+  border: solid 1px #dbdad7;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 0;
+  margin-bottom: -10px;
+}
+
+/* Customizes specs of the register button */
+#register .registerbtn {
+	background: #7F7FD5;
+	font-weight: inherit;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	padding: 10px;
+  width: 40%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* When mouse hovers over button, the button will lighten */
+#register .registerbtn:hover {
+  opacity: 0.5;
+}
+
+/* Modifies position and appearance of x button in message box */
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  color: #696969;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+/* When mouse hovers over close button, the button will lighten */
+.closebtn:hover {
+  color: #D3D3D3;
+}

@@ -24,6 +24,9 @@ const emailfield = document.getElementById('emailid');
 const passwordfield = document.getElementById('passid');
 const cpasswordfield = document.getElementById('cpassid');
 
+// Defines random password
+var retVal;
+
 // Toggles password visibility (hides password for both password fields)
 hide.onclick = function() {
   elPassword.setAttribute("type", "password");
@@ -80,8 +83,15 @@ generate.onclick = function() {
   lockState = false;
   var rand = document.getElementById('passid');
   var rand2 = document.getElementById('cpassid');
-  rand.value = "(WP=(Ld8f<{h=x#r";
-  rand2.value = "(WP=(Ld8f<{h=x#r";
+  // generate actual random pass here
+  var length = 12;
+  retVal = "";
+  var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*().,?"
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+  rand.value = retVal;
+  rand2.value = retVal;
   nudge.style.display = "none";
   checkInputs();
 }
@@ -104,14 +114,14 @@ function checkValidation() {
   const passValue2 = cpasswordfield.value.trim();
 
   // Scenario that user uses random password
-  if (isEmail(emailValue) && passValue == "(WP=(Ld8f<{h=x#r" && passValue == passValue2) {
-    swal({title: "ACCOUNT CREATED", text: "Password successfully saved in your vault!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+  if (isEmail(emailValue) && passValue == retVal && passValue == passValue2) {
+    swal({title: "ACCOUNT CREATED", text: "Password successfully saved in your vault!", icon:"success",closeOnClickOutside: false, closeOnEsc: false}).then(function(){location.reload();});
   }
 
   // Scenario that user doesn't use random password
-  if (isEmail(emailValue) && passValue != "" && passValue != "(WP=(Ld8f<{h=x#r" &&
+  if (isEmail(emailValue) && passValue != "" && passValue != retVal &&
   passValue == passValue2) {
-    swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+    swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false}).then(function(){location.reload();});
   }
 
   // Checks the input of email field
@@ -142,7 +152,7 @@ function checkPass() {
     setErrorFor(passwordfield, "Password cannot be blank");
     elPassword.style.color = '#FF0011';
   }
-  else if (passValue != "(WP=(Ld8f<{h=x#r") {
+  else if (passValue != retVal) {
     lockState = true;
     setErrorFor(passwordfield, "We recommend using a random password");
     elPassword.style.color = '#FF0011';

@@ -16,7 +16,7 @@
 
   <body>
 
-    <form id="register" autocomplete="off" method="post" >
+    <form id="register" method="post" >
 
       <fieldset>
 
@@ -26,8 +26,8 @@
         <div class="container">
 
           <label for="email"><b>Email Address</b></label><br>
-          <input type="text" name="email" class="emailfield" id="emailid"
-          placeholder="Enter your email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" value="" />
+          <input type="text" class="emailfield" id="emailid"
+          placeholder="Enter your email" autocomplete="off" name="email" />
 
           <!-- Displays bottom error message towards email validation -->
           <div class="bottomerror">
@@ -40,12 +40,8 @@
         <!-- Password textfield -->
         <div class="container">
 
-          <input name="disable-pwd-mgr-1" type="password" id="disable-pwd-mgr-1" style="display: none;" value="disable-pwd-mgr-1" />
-          <input name="disable-pwd-mgr-2" type="password" id="disable-pwd-mgr-2" style="display: none;" value="disable-pwd-mgr-2" />
-          <input name="disable-pwd-mgr-3" type="password" id="disable-pwd-mgr-3" style="display: none;" value="disable-pwd-mgr-3" />
-
           <label for="pass"><b>Password</b></label><br>
-          <input type="password" name="pass" class="passfield" id="passid" placeholder="Enter your password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" value="" />
+          <input type="password" class="passfield" id="passid" placeholder="Enter your password" autocomplete="off" name="pass" />
 
           <!-- Displays lock -->
           <div class="lock-container">
@@ -82,12 +78,12 @@
               <!-- Displays random password generator button -->
               <div class="rbtn">
                <input type="button" value="Use Secure Password:" class="rndmbtn" id="randombutton"/>
-               <div class="actualpass"> <p>(WP=(Ld8f<{h=x#r</p> </div>
+               <div class="actualpass"> <p></p> </div>
              </div>
             </div>
             <span class="closebtn" onclick="this.parentElement.style.display='none';">x</span>
             <div class="callout-container">
-              <p>Random passwords guarantee the best security against hackers. It will be saved in your vault so you won't have to remember it.</p>
+              <p>Using a random password is one of the best ways to protect your account against hackers. It will be saved for you.</p>
             </div>
           </div>
 
@@ -102,12 +98,8 @@
         <!-- Confirm Password textfield -->
         <div class="container">
 
-          <input name="disable-pwd-mgr-4" type="password" id="disable-pwd-mgr-4" style="display: none;" value="disable-pwd-mgr-4" />
-          <input name="disable-pwd-mgr-5" type="password" id="disable-pwd-mgr-5" style="display: none;" value="disable-pwd-mgr-5" />
-          <input name="disable-pwd-mgr-6" type="password" id="disable-pwd-mgr-6" style="display: none;" value="disable-pwd-mgr-6" />
-
-          <label for="pass"><b>Confirm Password</b></label><br>
-          <input type="password" name="cpass" class="cpassfield" id="cpassid" placeholder="Re-enter your password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" value="" />
+          <label for="cpass"><b>Confirm Password</b></label><br>
+          <input type="password" class="cpassfield" id="cpassid" placeholder="Re-enter your password" autocomplete="off" name="cpass" />
 
           <!-- Displays bottom error message towards confirm password validation -->
           <div class="bottomerror">

@@ -6,9 +6,9 @@
     <!-- Sets title of web tab -->
     <title>Registration</title>
     <!-- Icons are imported (thus applied) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css" />
     <!-- Personal CSS is imported (thus applied) -->
-    <link rel="stylesheet" href="css/Finalized3.css">
+    <link rel="stylesheet" href="css/FinalizedCTRL.css">
     <!-- style media="screen" allows us to specify what we want to do on different sized screens -->
     <style media="screen"></style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
 
           <label for="email"><b>Email Address</b></label><br>
           <input type="text" class="emailfield" id="emailid"
-          placeholder="Enter your email" autocomplete="off" name="email" />
+          placeholder="Enter your email" name="email" />
 
           <!-- Displays bottom error message towards email validation -->
           <div class="bottomerror">
@@ -41,32 +41,7 @@
         <div class="container">
 
           <label for="pass"><b>Password</b></label><br>
-          <input type="password" class="passfield" id="passid" placeholder="Enter your password" autocomplete="off" name="pass" />
-
-          <!-- Displays lock -->
-          <div class="lock-container">
-
-            <svg
-            class="open-lock"
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 24 24">
-            <path d="M17 8V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2H9V7c0-1.654 1.346-3 3-3s3 1.346 3 3v1h2z"/>
-            </svg>
-
-            <svg
-            class="closed-lock"
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 24 24">
-            <path d="M20 12c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z" fill="#00c234"/>
-            </svg>
-
-          </div>
+          <input type="password" class="passfield" id="passid" placeholder="Enter your password" name="pass" />
 
           <!-- Displays eye icon representing toggle action for password visibility -->
           <i class="hide fa fa-eye"></i>
@@ -84,7 +59,7 @@
         <div class="container">
 
           <label for="cpass"><b>Confirm Password</b></label><br>
-          <input type="password" class="cpassfield" id="cpassid" placeholder="Re-enter your password" autocomplete="off" name="cpass" />
+          <input type="password" class="cpassfield" id="cpassid" placeholder="Re-enter your password" name="cpass" />
 
           <!-- Displays bottom error message towards confirm password validation -->
           <div class="bottomerror">
@@ -101,10 +76,37 @@
 
     </form>
 
-    <!-- Script required for Account created popup  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- Chrome message box -->
+    <div class="chrome-save">
+
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">x</span>
+
+      <div class="picture">
+        <img src="image.png" alt="">
+      </div>
+
+      <div class="save-field">
+
+        <label for="">Save password?</label>
+
+        <h4>Username</h4>
+        <input type="text" name="user" id="user" class="user" value="" readonly>
+
+        <p>Password</p>
+        <input type="password" name="pass" id="pass" class="pass" value="" readonly>
+        <i class="hidey fa fa-eye"></i>
+        <i class="showy fa fa-eye-slash"></i>
+
+        <input type="button" class="save" name="" value="Save">
+
+        <input type="button" class="never" name="" value="Never">
+
+      </div>
+
+    </div>
+
     <!-- Script points towards my JS file -->
-    <script src = "js/Finalized3.js"></script>
+    <script src = "js/FinalizedCTRL.js"></script>
 
   </body>
 

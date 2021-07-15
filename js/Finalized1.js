@@ -26,6 +26,9 @@ const cpasswordfield = document.getElementById('cpassid');
 const elButton = document.querySelector(".registerbtn");
 const elRndm = document.querySelector(".rndmbtn");
 
+// Defines random password
+var retVal;
+
 // Toggles password visibility (hides password for both password fields)
 hide.onclick = function() {
   elPassword.setAttribute("type", "password");
@@ -45,15 +48,23 @@ show.onclick = function() {
 // Actions that occur when user clicks on the password field
 elPassword.addEventListener('focus', (e) => {
   // Lock appears
-  lockContainer.style.display = 'inherit';
+  lockContainer.style.display = 'block';
   // Bottom error message (includes red border and red dots)
   checkInputs();
   // Defines that true = red open lock
   if (lockState == true) {
     // Specifically red open lock appears
-    openLock.style.display = 'inherit';
+    openLock.style.display = 'block';
     // Message appears
     message.style.display = 'block';
+    // generate actual random pass here
+    var length = 12;
+    retVal = "";
+    var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*().,?"
+      for (var i = 0, n = charset.length; i < length; ++i) {
+          retVal += charset.charAt(Math.floor(Math.random() * n));
+      }
+    setPhrase(retVal);
   }
 });
 
@@ -92,10 +103,8 @@ elConfirm.addEventListener('input', (e) => {
 document.getElementById("randombutton").addEventListener('mousedown', function () {
   // By clicking generate button, lock is recognized in successful mode
   lockState = false;
-  var rand = document.getElementById('passid');
-  var rand2 = document.getElementById('cpassid');
-  rand.value = "(WP=(Ld8f<{h=x#r";
-  rand2.value = "(WP=(Ld8f<{h=x#r";
+  passwordfield.value = retVal;
+  cpasswordfield.value = retVal;
   message.style.display = 'none';
   checkInputs();
 });
@@ -114,14 +123,14 @@ function checkValidation() {
   const passValue2 = cpasswordfield.value.trim();
 
   // Scenario that user uses random password
-  if (isEmail(emailValue) && passValue == "(WP=(Ld8f<{h=x#r" && passValue == passValue2) {
-    swal({title: "ACCOUNT CREATED", text: "Password successfully saved in your vault!", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+  if (isEmail(emailValue) && passValue == retVal && passValue == passValue2) {
+    swal({title: "ACCOUNT CREATED", text: "Password successfully saved in your vault!", icon:"success",closeOnClickOutside: false, closeOnEsc: false}).then(function(){location.reload();});
   }
 
   // Scenario that user doesn't use random password
-  if (isEmail(emailValue) && passValue != "" && passValue != "(WP=(Ld8f<{h=x#r" &&
+  if (isEmail(emailValue) && passValue != "" && passValue != retVal &&
   passValue == passValue2) {
-    swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false,}).then(function(){location.reload();});
+    swal({title: "ACCOUNT CREATED", icon:"success",closeOnClickOutside: false, closeOnEsc: false}).then(function(){location.reload();});
   }
 
   // Checks the input of email field
@@ -152,7 +161,7 @@ function checkPass() {
     setErrorFor(passwordfield, "Password cannot be blank");
     elPassword.style.color = '#FF0011';
   }
-  else if (passValue != "(WP=(Ld8f<{h=x#r") {
+  else if (passValue != retVal) {
     lockState = true;
     setErrorFor(passwordfield, "We recommend using a random password");
     elPassword.style.color = '#FF0011';
@@ -199,6 +208,13 @@ function checkCPass() {
 // Validates the format of the given email
 function isEmail(emailfield) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailfield);
+}
+
+function setPhrase(message) {
+  const actualpass = document.querySelector(".actualpass")
+  const para = actualpass.querySelector("p")
+
+  para.innerText = message;
 }
 
 // Sets the border colour to be red when error occurs
