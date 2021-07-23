@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css" />
     <!-- Personal CSS is imported (thus applied) -->
     <link rel="stylesheet" href="css/FinalizedCTRL.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- style media="screen" allows us to specify what we want to do on different sized screens -->
     <style media="screen"></style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
 
   <body>
 
-    <form id="register" method="post">
+    <form id="register" method="post" autocomplete="off">
 
       <fieldset>
 
@@ -25,9 +26,11 @@
         <!-- Email textfield -->
         <div class="container">
 
+          <input name = "DummyUsername" type="text" style="display:none;">
+
           <label for="email"><b>Email Address</b></label><br>
           <input type="text" class="emailfield" id="emailid"
-          placeholder="Enter your email" name="email" />
+          placeholder="Enter your email" name="email" autocorrect="off" spellcheck="false" autocomplete="off" />
 
           <!-- Displays bottom error message towards email validation -->
           <div class="bottomerror">
@@ -40,8 +43,10 @@
         <!-- Password textfield -->
         <div class="container">
 
+          <input name = "DummyPassword" type="password" style="display:none;">
+
           <label for="pass"><b>Password</b></label><br>
-          <input type="password" class="passfield" id="passid" placeholder="Enter your password" name="pass" />
+          <input type="password" class="passfield" id="passid" placeholder="Enter your password" name="pass" autocorrect="off" spellcheck="false" autocomplete="off" />
 
           <!-- Displays eye icon representing toggle action for password visibility -->
           <i class="hide fa fa-eye"></i>
@@ -58,8 +63,10 @@
         <!-- Confirm Password textfield -->
         <div class="container">
 
+          <input name = "DummyPassword2" type="password" style="display:none;">
+
           <label for="cpass"><b>Confirm Password</b></label><br>
-          <input type="password" class="cpassfield" id="cpassid" placeholder="Re-enter your password" name="cpass" />
+          <input type="password" class="cpassfield" id="cpassid" placeholder="Re-enter your password" name="cpass" autocorrect="off" spellcheck="false" autocomplete="off" />
 
           <!-- Displays bottom error message towards confirm password validation -->
           <div class="bottomerror">
@@ -107,6 +114,7 @@
 
     <!-- Script points towards my JS file -->
     <script src = "js/FinalizedCTRL.js"></script>
+    <script>$('input').attr('autocomplete', 'off');</script>
 
   </body>
 

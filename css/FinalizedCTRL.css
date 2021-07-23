@@ -286,3 +286,10 @@ padding-left: 5px;
 .closebtn:hover {
   color: #D3D3D3;
 }
+
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
