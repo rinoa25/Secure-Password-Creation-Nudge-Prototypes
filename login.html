@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- text direction is set to left to right -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Sets title of web tab -->
+    <title>Log In</title>
+    <!-- Icons are imported (thus applied) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Personal CSS is imported (thus applied) -->
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- style media="screen" allows us to specify what we want to do on different sized screens -->
+    <style media="screen"></style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <form class="" id="register" name="register">
+
+      <fieldset>
+
+        <h2 class="header">Log In</h2>
+
+        <!-- Email textfield -->
+        <div class="container">
+
+          <label><b>Email Address</b></label><br>
+          <input type="text" placeholder="Enter your email" class="email" id="email" name="email" value="">
+
+          <!-- Displays bottom error message towards email validation -->
+          <div class="bottomerror">
+            <small></small>
+          </div>
+
+        <!-- End of email textfield -->
+        </div>
+
+        <!-- Password textfield -->
+        <div class="container">
+
+          <label><b>Password</b></label><br>
+          <input type="password" placeholder="Enter your password" class="pass" id="pass" name="pass" value="">
+
+          <!-- Displays eye icon representing toggle action for password visibility -->
+          <i class="hide fa fa-eye"></i>
+          <i class="show fa fa-eye-slash"></i>
+
+          <!-- Displays bottom error message towards password validation -->
+          <div class="bottomerror">
+            <small></small>
+          </div>
+
+        <!-- End of password textfield -->
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="Register">Submit</button>
+
+      </fieldset>
+
+    </form>
+
+    <!-- Script required for Account created popup  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- Script points towards my JS file -->
+    <script src = "js/login.js"></script>
+
+  </body>
+
+</html>
