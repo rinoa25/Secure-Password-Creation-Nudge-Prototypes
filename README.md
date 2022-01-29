@@ -7,7 +7,6 @@ What this repository contains:
   - This repository contains all the prototypes (& all its respective versions) that I have personally made for the Password Managers group. 
 
 How to view the prototypes:
-  - All prototypes and its respective versions can be viewed in the website attached below.
   - Users will be brought to a homepage where all prototypes are listed from oldest to newest. Users can view each prototypes by clicking the "view" button.
 
 Navigating the files and folders of this repository:
